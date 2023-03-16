@@ -1,0 +1,13 @@
+#quiz {
+    margin: 10px;
+    padding: 20px;
+}
+
+.questions {
+    padding: 20px;
+}
+
+.quiz button {
+    display: flex;
+    margin: 10px;
+}
