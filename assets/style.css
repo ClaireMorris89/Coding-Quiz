@@ -1,13 +1,48 @@
-#quiz {
-    margin: 10px;
-    padding: 20px;
+body{
+    background-color: blanchedalmond;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
 }
 
-.questions {
-    padding: 20px;
-}
-
-.quiz button {
+header {
+    margin: 10px 15px 0px 15px;
     display: flex;
-    margin: 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    color:blueviolet;
+    letter-spacing: 10px;
+    text-decoration: underline;
+}
+
+.start-btn{
+ width:70px;
+ height:30px;
+ background-color: blueviolet;
+ color: white;
+}
+
+#highScores {
+    color: black;
+    font-weight: bolder;
+}
+
+#question {
+    background-color: lightgray;
+    text-align: center;
+    width:auto;
+    padding: 10px;
+}
+
+.answer {
+    align-items: center;
+    padding: 10px;
+    margin: 5px;
+
+}
+.quiz-questions {
+    display:flex;
+    flex-direction: column;
 }
