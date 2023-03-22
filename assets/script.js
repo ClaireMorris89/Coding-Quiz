@@ -1,3 +1,29 @@
+var timer = document.querySelector('#timer');
+var startButton = document.querySelector('.start-btn');
+var timeLeft=50;
+var quiz=document.querySelector('#quiz');
+var questionOne = document.querySelector('#question1');
+var questionTwo = document.querySelector('#question2');
+var submitOne = document.querySelector('#submit-btn-1');
+var submitTwo = document.querySelector('#submit-btn-2');
+
+
+
+
+
+function question1 (){
+    quiz.removeAttribute('hidden');
+    questionOne.removeAttribute('hidden');
+};
+
+
+function question2(){
+    if (document.getElementById('q1c').checked===false) {
+        timeLeft-=5;
+    };
+    questionOne.hidden=true;
+    questionTwo.removeAttribute('hidden');
+};
 
 
 
@@ -7,32 +33,34 @@
 
 
 
+function startQuiz(){
+    countdown();
+    question1();
+    };
+
+function countdown(){
+     var timeInterval = setInterval (function () {
+        if (timeLeft > 1) {
+           timer.textContent = timeLeft + ' seconds left';
+             timeLeft--;
+       } else if (timeLeft === 1) {
+             timer.textContent = timeLeft + ' second left';
+           timeLeft--;
+        } else {
+             timer.textContent = 'time is up!';
+             clearInterval(timeInterval);
+         }
+
+        }, 1000);
+     };
+
+ 
+ startButton.addEventListener('click', startQuiz);
+ submitOne.addEventListener('click', question2);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// var timer = document.querySelector('#timer');
-// var startButton = document.querySelector('.start-btn');
 // var questionSelector = 0;
-// var timeLeft=50;
 // var score = 0;
 
 // //var buttonEl = document.getElementsByClassName('answer');
@@ -114,30 +142,9 @@
 
 // // how to stop it when it runs out of questions to pull??
 
-// function countdown(){
-//     var timeInterval = setInterval (function (){
-//         if (timeLeft > 1) {
-//             timer.textContent = timeLeft + ' seconds left';
-//             timeLeft--;
-//         } else if (timeLeft === 1) {
-//             timer.textContent = timeLeft + ' second left';
-//             timeLeft--;
-//         } else {
-//             timer.textContent = 'time is up!';
-//             clearInterval(timeInterval);
-//         }
-
-//         }, 1000);
-//     };
 
 
-//     function startQuiz(){
-//         countdown();
-//         questionsPopulator();
-//         };
 
-
-// startButton.addEventListener("click", startQuiz);
 
 //adding eventlistener to each button???
 /*document.querySelectorAll('.answer').forEach(answer =>

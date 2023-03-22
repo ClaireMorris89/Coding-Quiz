@@ -1,3 +1,26 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 body{
     background-color: blanchedalmond;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -27,9 +50,9 @@ h1 {
 #highScores {
     color: black;
     font-weight: bolder;
-}
+} 
 
-#question {
+/* #question {
     background-color: lightgray;
     text-align: center;
     width:auto;
@@ -45,4 +68,4 @@ h1 {
 .quiz-questions {
     display:flex;
     flex-direction: column;
-}
+}  */
