@@ -13,34 +13,39 @@
 
 
 <header>
-    <a id="highScores" href ="">view high scores</a>
+    <a href ="#highScores">view high scores</a>
     <h1>CODING QUIZ</h1>
     <h2 id="timer"></h2>
     <button class="start-btn">start</button>
 </header>
 
+<div id="highScores"></div>
+
 <main>
+
     <div hidden id="quiz">
-        <!-- question 1 -->
+
         <form>
             <fieldset hidden id="question1">
-                <legend class="all-questions"> question 1</legend>
+                <legend class="all-questions"> What is a JavaScript element that represents either TRUE or FALSE values?
+
+                </legend>
                     <ul class="all-answers">    
                         <li>
                             <input name="answer1" type="radio" id="q1a">
-                            <label for="q1a">answer a</label>
+                            <label for="q1a">Array</label>
                         </li>
                         <li>
                             <input name="answer1" type="radio" id="q1b">
-                            <label for="q1b">answer b</label>
+                            <label for="q1b">Object</label>
                         </li>
                         <li>
                             <input name="answer1" type="radio" value="correct" id="q1c">
-                            <label for="q1c">answer c</label>
+                            <label for="q1c">Boolean</label>
                         </li>
                         <li>
                             <input name="answer1" type="radio" id="q1d">
-                            <label for="q1d">answer d</label>
+                            <label for="q1d">String</label>
                         </li>
                     </ul>
                     <input type="button" value="Submit Answer" class="submit-btn" id="submit-btn-1">
@@ -49,33 +54,114 @@
 
         <form>
             <fieldset hidden id="question2">
-                <legend class="all-questions"> question 2</legend>
+                <legend class="all-questions">Which comparison operator means 'OR'?</legend>
                     <ul class="all-answers">    
                         <li>
-                            <input name="answer2" type="radio" id="q2a">
-                            <label for="q2a">answer a</label>
+                            <input name="answer2" type="radio" value="correct" id="q2a">
+                            <label for="q2a">||</label>
                         </li>
                         <li>
                             <input name="answer2" type="radio" id="q2b">
-                            <label for="q2b">answer b</label>
+                            <label for="q2b">==</label>
                         </li>
                         <li>
                             <input name="answer2" type="radio" id="q2c">
-                            <label for="q2c">answer c</label>
+                            <label for="q2c">&&</label>
                         </li>
                         <li>
                             <input name="answer2" type="radio" id="q2d">
-                            <label for="q2d">answer d</label>
+                            <label for="q2d">!===</label>
                         </li>
                     </ul>
                     <input type="button" value="Submit Answer" class="submit-btn" id="submit-btn-2">
             </fieldset>
         </form>
 
+        <form>
+            <fieldset hidden id="question3">
+                <legend class="all-questions">To store groups of data in a single variable, we use:</legend>
+                    <ul class="all-answers">    
+                        <li>
+                            <input name="answer3" type="radio" value="correct" id="q3a">
+                            <label for="q3a">Arrays</label>
+                        </li>
+                        <li>
+                            <input name="answer3" type="radio" id="q3b">
+                            <label for="q3b">Strings</label>
+                        </li>
+                        <li>
+                            <input name="answer3" type="radio" id="q3c">
+                            <label for="q3c">Elements</label>
+                        </li>
+                        <li>
+                            <input name="answer3" type="radio" id="q3d">
+                            <label for="q3d">Booleans</label>
+                        </li>
+                    </ul>
+                    <input type="button" value="Submit Answer" class="submit-btn" id="submit-btn-3">
+            </fieldset>
+        </form>
 
+        <form>
+            <fieldset hidden id="question4">
+                <legend class="all-questions">We use a 'for-loop' to:</legend>
+                    <ul class="all-answers">    
+                        <li>
+                            <input name="answer4" type="radio" id="q4a">
+                            <label for="q4a">Compare statements</label>
+                        </li>
+                        <li>
+                            <input name="answer4" type="radio" value="correct" id="q4b">
+                            <label for="q4b">Execute code more than once</label>
+                        </li>
+                        <li>
+                            <input name="answer4" type="radio" id="q4c">
+                            <label for="q4c">Call a function</label>
+                        </li>
+                        <li>
+                            <input name="answer4" type="radio" id="q4d">
+                            <label for="q4d">Make life dificult</label>
+                        </li>
+                    </ul>
+                    <input type="button" value="Submit Answer" class="submit-btn" id="submit-btn-4">
+            </fieldset>
+        </form>
 
+        <form>
+            <fieldset hidden id="question5">
+                <legend class="all-questions">A variable declared in _____ scope is available to all functions.</legend>
+                    <ul class="all-answers">    
+                        <li>
+                            <input name="answer5" type="radio" id="q5a">
+                            <label for="q5a">Partial</label>
+                        </li>
+                        <li>
+                            <input name="answer5" type="radio" id="q5b">
+                            <label for="q5b">Full</label>
+                        </li>
+                        <li>
+                            <input name="answer5" type="radio" id="q5c">
+                            <label for="q5c">Local</label>
+                        </li>
+                        <li>
+                            <input name="answer5" type="radio" value="correct" id="q5d">
+                            <label for="q5d">Global</label>
+                        </li>
+                    </ul>
+                    <input type="button" value="Submit Answer" class="submit-btn" id="submit-btn-5">
+            </fieldset>
+        </form>
 
     </div>
+
+
+<div hidden id="scores">
+    <form id="names">
+        <p class="score"></p>
+        <input name="name" type="text" placeholder="Name here!" id="nameInput">
+        <input type="button" value="Save Score" class="submit-btn" id="high-scores-btn">
+    </form>
+</div>
 
 
 

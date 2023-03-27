@@ -1,15 +1,42 @@
 var timer = document.querySelector('#timer');
 var startButton = document.querySelector('.start-btn');
-var timeLeft=50;
+var timeLeft=100;
+var quizOver=false;
+var highScoresDiv = document.querySelector('#highScores');
+var highScoresLink = document.querySelector('a');
 var quiz=document.querySelector('#quiz');
 var questionOne = document.querySelector('#question1');
 var questionTwo = document.querySelector('#question2');
+var questionThree = document.querySelector('#question3');
+var questionFour = document.querySelector('#question4');
+var questionFive = document.querySelector('#question5');
 var submitOne = document.querySelector('#submit-btn-1');
 var submitTwo = document.querySelector('#submit-btn-2');
+var submitThree = document.querySelector('#submit-btn-3');
+var submitFour = document.querySelector('#submit-btn-4');
+var submitFive = document.querySelector('#submit-btn-5');
+var scoresDiv = document.querySelector('#scores');
+var firstName = document.querySelector('#nameInput');
+var highScoresBtn = document.querySelector('#high-scores-btn');
 
 
+function countdown(){
+    var timeInterval = setInterval (function () {
+       if (timeLeft > 1) {
+          timer.textContent = timeLeft + ' seconds left';
+            timeLeft--;
+      } else if (timeLeft === 1) {
+            timer.textContent = timeLeft + ' second left';
+          timeLeft--;
+       } else if (timeLeft===0 || quizOver) {
+            clearInterval(timeInterval);
+            timer.textContent = 'time is up!';
+            quiz.hidden= true;
+            console.log('quiz end');
+        }
 
-
+       }, 1000);
+    };
 
 function question1 (){
     quiz.removeAttribute('hidden');
@@ -25,38 +52,68 @@ function question2(){
     questionTwo.removeAttribute('hidden');
 };
 
+function question3(){
+    if (document.getElementById('q2a').checked===false) {
+        timeLeft-=5;
+    };
+    questionTwo.hidden=true;
+    questionThree.removeAttribute('hidden');
+};
 
+function question4(){
+    if (document.getElementById('q3a').checked===false){
+        timeLeft-=5;
+    };
+    questionThree.hidden=true;
+    questionFour.removeAttribute('hidden');
+};
 
+function question5(){
+    if (document.getElementById('q4b').checked===false){
+        timeLeft-=5;
+    };
+    questionFour.hidden=true;
+    questionFive.removeAttribute('hidden');
+};
 
+//quizOver not activated 
+function quizEnd(){
+    if (document.getElementById('q5d').checked===false){
+        timeLeft-=5;
+    };
+    questionFive.hidden=true;
+    quizOver=true;
+    scoresDiv.removeAttribute('hidden');
+    localStorage.setItem('score', timeLeft);
+    
+};
 
+function saveName(){
+    localStorage.setItem('name', firstName.value );
+};
 
-
-
+//saves everytime I press high scores link
+function showHighScores(){
+    var li = document.createElement('li');
+    li.innerHTML = localStorage.getItem('name') + ' = ' + localStorage.getItem('score');
+    highScoresDiv.appendChild(li);
+};
 
 function startQuiz(){
     countdown();
     question1();
     };
 
-function countdown(){
-     var timeInterval = setInterval (function () {
-        if (timeLeft > 1) {
-           timer.textContent = timeLeft + ' seconds left';
-             timeLeft--;
-       } else if (timeLeft === 1) {
-             timer.textContent = timeLeft + ' second left';
-           timeLeft--;
-        } else {
-             timer.textContent = 'time is up!';
-             clearInterval(timeInterval);
-         }
-
-        }, 1000);
-     };
 
  
- startButton.addEventListener('click', startQuiz);
- submitOne.addEventListener('click', question2);
+startButton.addEventListener('click', startQuiz);
+submitOne.addEventListener('click', question2);
+submitTwo.addEventListener('click', question3);
+submitThree.addEventListener('click', question4);
+submitFour.addEventListener('click', question5);
+submitFive.addEventListener('click', quizEnd);
+highScoresBtn.addEventListener('click', saveName);
+highScoresLink.addEventListener('click', showHighScores);
 
 
 
