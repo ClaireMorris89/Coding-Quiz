@@ -1,6 +1,6 @@
 var timer = document.querySelector('#timer');
 var startButton = document.querySelector('.start-btn');
-var timeLeft=100;
+var timeLeft=60;
 var quizOver=false;
 var highScoresDiv = document.querySelector('#highScores');
 var highScoresLink = document.querySelector('a');
@@ -18,32 +18,35 @@ var submitFive = document.querySelector('#submit-btn-5');
 var scoresDiv = document.querySelector('#scores');
 var firstName = document.querySelector('#nameInput');
 var highScoresBtn = document.querySelector('#high-scores-btn');
+var timeInterval;
+var score = 0;
 
-
+// shows timer, running every second; once timer runs out, numbers disappear and quiz disappears 
 function countdown(){
-    var timeInterval = setInterval (function () {
+ timeInterval = setInterval (function () {
        if (timeLeft > 1) {
           timer.textContent = timeLeft + ' seconds left';
             timeLeft--;
       } else if (timeLeft === 1) {
             timer.textContent = timeLeft + ' second left';
           timeLeft--;
-       } else if (timeLeft===0 || quizOver) {
+       } else if (timeLeft===0) {
             clearInterval(timeInterval);
             timer.textContent = 'time is up!';
-            quiz.hidden= true;
-            console.log('quiz end');
+            quiz.hidden=true;
         }
 
        }, 1000);
     };
 
+// removes the hidden quiz div and displays question 1
 function question1 (){
     quiz.removeAttribute('hidden');
     questionOne.removeAttribute('hidden');
 };
 
-
+//checks if the correct answer is checked in number 1; if not, deduct 5 seceonds.
+// hide question one and show question 2
 function question2(){
     if (document.getElementById('q1c').checked===false) {
         timeLeft-=5;
@@ -52,6 +55,8 @@ function question2(){
     questionTwo.removeAttribute('hidden');
 };
 
+//checks if the correct answer is checked in number 2; if not, deduct 5 seceonds.
+// hide question two and show question 3
 function question3(){
     if (document.getElementById('q2a').checked===false) {
         timeLeft-=5;
@@ -60,6 +65,8 @@ function question3(){
     questionThree.removeAttribute('hidden');
 };
 
+//checks if the correct answer is checked in number 3; if not, deduct 5 seceonds.
+// hide question 3 and show question 4
 function question4(){
     if (document.getElementById('q3a').checked===false){
         timeLeft-=5;
@@ -68,44 +75,77 @@ function question4(){
     questionFour.removeAttribute('hidden');
 };
 
+//checks if the correct answer is checked in number 4; if not, deduct 5 seceonds.
+// hide question 4 and show question 5
 function question5(){
     if (document.getElementById('q4b').checked===false){
         timeLeft-=5;
     };
     questionFour.hidden=true;
     questionFive.removeAttribute('hidden');
+    score=timeLeft;
 };
 
-//quizOver not activated 
+//checks if the correct answer is checked in number 5; if not, deduct 5 seceonds.
+// hide question 5
+//clears timer
+//hides quiz div
+//shows input for entering name for high score
 function quizEnd(){
     if (document.getElementById('q5d').checked===false){
         timeLeft-=5;
     };
     questionFive.hidden=true;
     quizOver=true;
+    clearInterval(timeInterval);
+     timer.textContent = 'time is up!';
+    quiz.hidden=true;
     scoresDiv.removeAttribute('hidden');
-    localStorage.setItem('score', timeLeft);
-    
+    //localStorage.setItem('score', timeLeft);
+};
+//HELP HERE
+//need to refresh when I press start or it resaves all old data 
+//wont hover until i'm on the end of my quiz 
+
+//saves each score as object w/ name and score=timeleft
+//gets parsed array of high scores (or empty array) from local storage
+//pushes each new score into the high score array
+// stringify new array to save again in local storage
+function saveName(event){
+    event.preventDefault();
+    var highScores = JSON.parse(localStorage.getItem('high-scores'))|| [];
+    var newScore = {
+        score: score,
+        name: firstName.value,
+    }
+    highScores.push(newScore);
+    localStorage.setItem('high-scores', JSON.stringify(highScores));
+    listHighScores();
+    return ;
+}
+
+//runs for loop to create li element and list each high score in the high scores local storage 
+function listHighScores(){
+    var highScores= JSON.parse(localStorage.getItem('high-scores'))|| [];
+    for (i=0; i<highScores.length; i++){
+        var li= document.createElement('li');
+        li.innerHTML=highScores[i].name + ' = ' + highScores[i].score;
+        highScoresDiv.appendChild(li);
+        scoresDiv.hidden=true;
+    };
 };
 
-function saveName(){
-    localStorage.setItem('name', firstName.value );
-};
 
-//saves everytime I press high scores link
-function showHighScores(){
-    var li = document.createElement('li');
-    li.innerHTML = localStorage.getItem('name') + ' = ' + localStorage.getItem('score');
-    highScoresDiv.appendChild(li);
-};
 
+
+//when "start button" is pressed, the countdown (timer) function as well as question 1 begins
 function startQuiz(){
     countdown();
     question1();
     };
 
 
- 
+ // each event listener is connected to a submit button on a question and checks the input for the answer on the previous question
 startButton.addEventListener('click', startQuiz);
 submitOne.addEventListener('click', question2);
 submitTwo.addEventListener('click', question3);
@@ -113,107 +153,5 @@ submitThree.addEventListener('click', question4);
 submitFour.addEventListener('click', question5);
 submitFive.addEventListener('click', quizEnd);
 highScoresBtn.addEventListener('click', saveName);
-highScoresLink.addEventListener('click', showHighScores);
 
 
-
-// var questionSelector = 0;
-// var score = 0;
-
-// //var buttonEl = document.getElementsByClassName('answer');
-// // var answerA = document.getElementById("op1");
-// // var answerB = document.getElementById("op2");
-// // var answerC = document.getElementById("op3");
-// // var answerD = document.getElementById("op4");
-
-// //should be queryselectorAll but doesn't work with event listener
-// //var answerButton=document.querySelector('.answer');
-// // var answerButtons=document.querySelectorAll('.answer');
-
-// var questions = [
-//     {
-//         question:"question 1",  
-//         answer1:"answer a",
-//         answer2:"answer b",
-//         answer3:"answer c",
-//         answer4:"answer d",
-//         correct:"answer a",
-//     },
-//     {
-//         question:"question 2",  
-//         answer1:"answer a",
-//         answer2:"answer b",
-//         answer3:"answer c",
-//         answer4:"answer d",
-//         correct:"answer b",
-//     },
-//     {
-//         question:"question 3",  
-//         answer1:"answer a",
-//         answer2:"answer b",
-//         answer3:"answer c",
-//         answer4:"answer d",
-//         correct:"answer c",
-//     },
-//     {
-//         question:"question 4",  
-//         answer1:"answer a",
-//         answer2:"answer b",
-//         answer3:"answer c",
-//         answer4:"answer d",
-//         correct:"answer c",
-//     },
-//     {
-//         question:"question 5",  
-//         answer1:"answer a",
-//         answer2:"answer b",
-//         answer3:"answer c",
-//         answer4:"answer d",
-//         correct:"answer c",
-//     },
-// ];
-
-
-// //how to make sure it runs next question/answer set? increment questionSelector?
-// function questionsPopulator(){
-//     document.getElementById('question').textContent=questions[0].question;
-//     document.getElementById('op1').value=questions[0].answer1;
-//     document.getElementById('op2').value=questions[0].answer2;
-//     document.getElementById('op3').value=questions[0].answer3;
-//     document.getElementById('op4').value=questions[0].answer4;
-// };
-
-
-// //get help on how to input info from selected button
-// function evaluateAnswer(event){
-//    var buttonEl = event.target;
-
-//    if (buttonEl.value = questions.question[0].correct){
-//     console.log('correct');
-//    } else {
-//     console.log('wrong');
-//    }
-   
-    
-// };
-
-// // how to stop it when it runs out of questions to pull??
-
-
-
-
-
-//adding eventlistener to each button???
-/*document.querySelectorAll('.answer').forEach(answer =>
-    answer.addEventListener('click', evaluateAnswer)
-    );*/
-
- //doesn't work with queryselectorALl
-//answerButtons.addEventListener("click", function (){  }); 
-
-// answerA.addEventListener("click",evaluateAnswer);
-// answerB.addEventListener("click",evaluateAnswer);
-// answerC.addEventListener("click",evaluateAnswer);
-// answerD.addEventListener("click",evaluateAnswer);
-
-// buttonEl.addEventListener('click',evaluateAnswer);

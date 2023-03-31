@@ -5,18 +5,21 @@ body{
 }
 
 header {
-    margin: 10px 15px 0px 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+     margin: 10px 15px 0px 15px;  
+    display: flex;  
+    justify-content:space-around; 
+     align-items:center; 
 }
 
 h1 {
-    color:blueviolet;
+    color: blueviolet;
     letter-spacing: 10px;
     text-decoration: underline;
 }
 
+#hover h2 {
+    margin-left: 40px;
+}
 .start-btn{
  width:70px;
  height:30px;
@@ -27,7 +30,13 @@ h1 {
 #highScores {
     color: black;
     font-weight: bolder;
+    visibility: hidden;
 } 
+
+#hover:hover #highScores{
+    visibility:visible;
+}
+
 
 .all-questions{
     border:3px solid blueviolet;
@@ -54,22 +63,3 @@ li:hover{
 .submit-btn:hover{
     transform: scale(1.1);
 }
-
-
-/* #question {
-    background-color: lightgray;
-    text-align: center;
-    width:auto;
-    padding: 10px;
-}
-
-.answer {
-    align-items: center;
-    padding: 10px;
-    margin: 5px;
-
-}
-.quiz-questions {
-    display:flex;
-    flex-direction: column;
-}  */

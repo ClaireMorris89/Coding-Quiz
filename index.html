@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8"/>
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="./assets/style.css">
     <title>Coding Quiz</title>
 </head>
 
@@ -13,18 +13,24 @@
 
 
 <header>
-    <a href ="#highScores">view high scores</a>
     <h1>CODING QUIZ</h1>
     <h2 id="timer"></h2>
     <button class="start-btn">start</button>
 </header>
 
-<div id="highScores"></div>
+
+<!-- hover over 'view high scores' tag and high scores list drops down -->
+<div id="hover">
+    <h2>view high scores</h2>
+    <div id="highScores"></div>
+</div>
 
 <main>
 
     <div hidden id="quiz">
 
+<!-- each fieldset has a question and four answer options; set to hidden to be able to call and hide in javascript -->
+<!-- value==correct on correct answer to be able to look for value checked in JS -->
         <form>
             <fieldset hidden id="question1">
                 <legend class="all-questions"> What is a JavaScript element that represents either TRUE or FALSE values?
@@ -154,7 +160,7 @@
 
     </div>
 
-
+<!-- Input form for name to keep track of high scores -->
 <div hidden id="scores">
     <form id="names">
         <p class="score"></p>
@@ -187,22 +193,3 @@
 
 
 
-
-
-
-<!-- <form>
-    <fieldset>
-        <div class="quiz-questions">
-            <h3 id="question"></h2>
-                <input type="button" class ="answer" id="op1"></input>
-                <input type="button" class ="answer" id="op2"></input>
-                <input type="button" class ="answer" id="op3"></input>
-                <input type="button" class ="answer" id="op4"></input>
-        </div>
-    </fieldset>
-</form>
-
-<script src="assets/script.js"></script>
-
-</body>
-</html> -->
