@@ -21,7 +21,7 @@ var highScoresBtn = document.querySelector('#high-scores-btn');
 var timeInterval;
 var score = 0;
 
-// shows timer, running every second; once timer runs out, numbers disappear and quiz disappears 
+//shows timer, running every second; once timer runs out, numbers disappear and quiz disappears 
 function countdown(){
  timeInterval = setInterval (function () {
        if (timeLeft > 1) {
@@ -98,14 +98,13 @@ function quizEnd(){
     questionFive.hidden=true;
     quizOver=true;
     clearInterval(timeInterval);
-     timer.textContent = 'time is up!';
+    timer.textContent = 'time is up!';
     quiz.hidden=true;
     scoresDiv.removeAttribute('hidden');
     //localStorage.setItem('score', timeLeft);
 };
 //HELP HERE
 //need to refresh when I press start or it resaves all old data 
-//wont hover until i'm on the end of my quiz 
 
 //saves each score as object w/ name and score=timeleft
 //gets parsed array of high scores (or empty array) from local storage
@@ -140,12 +139,13 @@ function listHighScores(){
 
 //when "start button" is pressed, the countdown (timer) function as well as question 1 begins
 function startQuiz(){
+    timeLeft=60;
     countdown();
     question1();
     };
 
 
- // each event listener is connected to a submit button on a question and checks the input for the answer on the previous question
+// each event listener is connected to a submit button on a question and checks the input for the answer on the previous question
 startButton.addEventListener('click', startQuiz);
 submitOne.addEventListener('click', question2);
 submitTwo.addEventListener('click', question3);
