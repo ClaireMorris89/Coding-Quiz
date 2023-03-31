@@ -8,7 +8,7 @@ This website provides a simple quiz on different aspects of JavaScript. Users ca
 
 This website can be used to test your knowledge of simple questions about JavaScript.
 
-website can be found at : 
+website can be found at : https://clairemorris89.github.io/Coding-Quiz/
 
 ![Screenshot 2023-03-30 at 6 24 55 PM](https://user-images.githubusercontent.com/124100820/228993328-c1ce9340-e70f-4fb0-93ad-0d8e3c4a599f.png)
 

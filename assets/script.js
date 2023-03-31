@@ -139,7 +139,6 @@ function listHighScores(){
 
 //when "start button" is pressed, the countdown (timer) function as well as question 1 begins
 function startQuiz(){
-    timeLeft=60;
     countdown();
     question1();
     };
